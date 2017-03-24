@@ -1,5 +1,6 @@
 package com.restapi.config;
 
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,7 @@ public class RestApiConfig extends WebMvcConfigurationSupport {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select().apis(RequestHandlerSelectors.basePackage("com.restapi.controller")).paths(PathSelectors.any()).build();
     }
 
+    @Bean
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("spring 中使用swagger2构建RESTFUL APIS").termsOfServiceUrl("http://blog.csdn.net/he90227").contact("逍遥飞鹤").version("1.1").build();
     }

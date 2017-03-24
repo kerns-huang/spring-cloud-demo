@@ -17,6 +17,7 @@ public class TestController {
 
     @ApiOperation(value = "获取测试数据集", notes = "")
     @RequestMapping(value = "/getUserList")
+    @ResponseBody
     public List<UserVO> getUserList() {
         return new ArrayList<UserVO>();
     }
@@ -24,6 +25,7 @@ public class TestController {
     @ApiOperation(value = "创建用户", notes = "根据user对象创建用户")
     @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
     @RequestMapping(value = "", method = RequestMethod.POST)
+    @ResponseBody
     public String createUser(@RequestBody UserVO userVO) {
         return "success";
     }
@@ -31,6 +33,7 @@ public class TestController {
     @ApiOperation(value = "获取用户", notes = "根据url的id来获取用户的详细信息")
     @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long")
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @ResponseBody
     public UserVO getUser(@PathVariable Long id) {
         return null;
     }
