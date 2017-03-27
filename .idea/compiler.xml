@@ -2,10 +2,14 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="config_main" target="1.8" />
+      <module name="config_test" target="1.8" />
       <module name="discover_main" target="1.8" />
       <module name="discover_test" target="1.8" />
       <module name="restapi_main" target="1.8" />
       <module name="restapi_test" target="1.8" />
+      <module name="server_main" target="1.8" />
+      <module name="server_test" target="1.8" />
       <module name="spring-cloud-test_main" target="1.8" />
       <module name="spring-cloud-test_test" target="1.8" />
     </bytecodeTargetLevel>

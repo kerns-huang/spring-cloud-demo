@@ -2,5 +2,4 @@ rootProject.name = 'spring-cloud-test'
 include 'discover'
 include 'restapi'
 include 'server'
-include 'config'
 
