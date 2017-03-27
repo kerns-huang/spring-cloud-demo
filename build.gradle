@@ -1,0 +1,67 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.2.RELEASE'
+    }
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+allprojects()
+        {
+            apply plugin: 'java'
+            apply plugin: 'org.springframework.boot'
+            apply plugin: 'idea'
+            dependencyManagement {
+                imports {
+                    mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6'
+                }
+            }
+            repositories {
+                maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+            }
+            dependencies {
+                compile 'org.springframework.cloud:spring-cloud-starter-config'
+                compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+            }
+            task download(type: Copy) {
+                from configurations.runtime
+                into 'lib'
+            }
+        }
+project("discover")
+        {
+            dependencies {
+                compile 'org.springframework.cloud:spring-cloud-starter-config'
+                compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
+            }
+        }
+project("restapi")
+        {
+            dependencies {
+                compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+                compile 'org.springframework.boot:spring-boot-starter-web'
+                compile 'io.springfox:springfox-swagger2:2.2.2'
+                compile 'io.springfox:springfox-swagger-ui:2.2.2'
+                compile 'org.springframework.boot:spring-boot-starter-aop'
+            }
+        }
+project("config")
+        {
+            dependencies {
+                compile 'org.springframework.cloud:spring-cloud-starter-config'
+            }
+        }
+project("server") {
+    dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        compile 'io.springfox:springfox-swagger2:2.2.2'
+        compile 'io.springfox:springfox-swagger-ui:2.2.2'
+        compile 'org.springframework.boot:spring-boot-starter-aop'
+        compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1'
+        compile 'org.springframework.boot:spring-boot-starter-jdbc'
+        compile 'mysql:mysql-connector-java:5.1.21'
+    }
+}
