@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.iml
 *.ipr
 *.iws
@@ -15,3 +16,18 @@ discover/lib
 /classes/*
 classes
 /build/
+=======
+.gradle
+build/
+classes/
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+.java-version
+.idea
+boot-static-docs/boot-static-docs.iml
+boot-swagger/boot-swagger.iml
+spring-java-swagger/src/main/webapp/
+>>>>>>> e796457e5892ef5b8d0a24a2a228b5c6c1eb2edd
