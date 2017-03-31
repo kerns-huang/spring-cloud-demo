@@ -1,7 +1,7 @@
-package springfoxdemo.boot.swagger;
+package com.restapi.main;
 
 import com.google.common.base.Predicate;
-import com.restapi.controller.UserController;
+import com.restapi.controller.TestController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -32,6 +32,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @EnableSwagger2 //Enable swagger 2.0 spec
 @ComponentScan(basePackageClasses = {
         PetController.class,
+        TestController.class
 })
 public class Application {
     public static void main(String[] args) {
@@ -50,6 +51,17 @@ public class Application {
                 .apiInfo(apiInfo())
                 .select()
                 .paths(petstorePaths())
+                .build()
+                .securitySchemes(newArrayList(oauth()))
+                .securityContexts(newArrayList(securityContext()));
+    }
+    @Bean
+    public Docket testApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("test-api")//组api
+                .apiInfo(apiInfo())
+                .select()
+                .paths(testPaths())
                 .build()
                 .securitySchemes(newArrayList(oauth()))
                 .securityContexts(newArrayList(securityContext()));
@@ -84,6 +96,10 @@ public class Application {
                 regex("/api/user.*"),
                 regex("/api/store.*")
         );
+    }
+
+    private Predicate<String> testPaths() {
+        return or(regex("/test/*"));
     }
 
     private Predicate<String> userOnlyEndpoints() {
