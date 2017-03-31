@@ -99,7 +99,7 @@ public class Application {
     }
 
     private Predicate<String> testPaths() {
-        return or(regex("/test/*"));
+        return or(regex("/test.*"));
     }
 
     private Predicate<String> userOnlyEndpoints() {
