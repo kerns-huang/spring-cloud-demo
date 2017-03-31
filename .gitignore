@@ -1,2 +1,13 @@
-.iml
+.gradle
+build/
+classes/
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+.java-version
 .idea
+boot-static-docs/boot-static-docs.iml
+boot-swagger/boot-swagger.iml
+spring-java-swagger/src/main/webapp/
