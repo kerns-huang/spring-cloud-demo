@@ -49,12 +49,6 @@ project("restapi")
                 compile 'org.springframework.boot:spring-boot-starter-aop'
             }
         }
-project("config")
-        {
-            dependencies {
-                compile 'org.springframework.cloud:spring-cloud-starter-config'
-            }
-        }
 project("server") {
     dependencies {
         compile 'org.springframework.boot:spring-boot-starter-web'
