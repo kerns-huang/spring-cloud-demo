@@ -15,3 +15,10 @@ discover/lib
 /classes/*
 classes
 /build/
+config/
+lib/
+zuul/build/
+restapi/build/
+restapi/*.iml
+server/*.iml
+discover/*.iml
