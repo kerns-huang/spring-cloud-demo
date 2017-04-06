@@ -58,3 +58,9 @@ project("server") {
 
     }
 }
+project("zuul")
+        {
+            dependencies{
+                compile 'org.springframework.cloud:spring-cloud-starter-zuul'
+            }
+        }
