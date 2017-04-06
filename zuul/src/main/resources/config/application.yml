@@ -1,0 +1,27 @@
+server:
+  port: 9090
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka/
+
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+#  Uncomment to disable auto-registering all services read from Eureka
+#  ignoredServices: '*'
+  routes:
+    rest-api-address:
+      path: /restApi/**
+      url: http://localhost:8080
+    static:
+      path: /static/**
+
+ribbon:
+      #如果设置为1那么就是1+1=2.如果设置3那么就是3次
+      MaxAutoRetries: 1
+      #MaxAutoRetriesNextServer: 1
+spring:
+  application:
+    name: zuul-server
