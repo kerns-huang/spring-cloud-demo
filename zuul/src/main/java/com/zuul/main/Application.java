@@ -1,5 +1,6 @@
 package com.zuul.main;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -24,3 +25,4 @@ public class Application {
     }
 
 }
+

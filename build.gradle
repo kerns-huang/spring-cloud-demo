@@ -74,3 +74,9 @@ project("messageCenter") {
         compile 'org.springframework.data:spring-data-Elasticsearch '
     }
 }
+project("zuul")
+        {
+            dependencies{
+                compile 'org.springframework.cloud:spring-cloud-starter-zuul'
+            }
+        }
