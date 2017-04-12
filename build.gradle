@@ -1,6 +1,7 @@
 buildscript {
     ext {
         springBootVersion = '1.5.2.RELEASE'
+        dockerVersion = "1.2"
     }
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
@@ -8,6 +9,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('se.transmode.gradle:gradle-docker:${dockerVersion}')
     }
 }
 allprojects()
@@ -15,6 +17,7 @@ allprojects()
             apply plugin: 'java'
             apply plugin: 'org.springframework.boot'
             apply plugin: 'idea'
+            apply plugin: 'docker'
             dependencyManagement {
                 imports {
                     mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6'
@@ -26,6 +29,7 @@ allprojects()
             dependencies {
                 compile 'org.springframework.cloud:spring-cloud-starter-config'
                 compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+
             }
         }
 project("discover")
@@ -48,6 +52,7 @@ project("restapi")
         }
 project("zuul")
         {
+
             dependencies {
                 compile 'org.springframework.cloud:spring-cloud-starter-zuul'
             }
@@ -62,6 +67,10 @@ project("server") {
         compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1'
         compile 'org.springframework.boot:spring-boot-starter-jdbc'
         compile 'mysql:mysql-connector-java:5.1.21'
-
+    }
+}
+project("messageCenter") {
+    dependencies {
+        compile 'org.springframework.data:spring-data-Elasticsearch '
     }
 }
