@@ -3,5 +3,5 @@ include 'discover'
 include 'restapi'
 include 'server'
 include 'zuul'
-include 'messageCenter'
+include 'contentCenter'
 

@@ -4,9 +4,12 @@ import com.google.common.base.Predicate;
 import com.restapi.controller.TestController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.client.RestTemplate;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.AuthorizationScopeBuilder;
 import springfox.documentation.builders.ImplicitGrantBuilder;
@@ -30,11 +33,18 @@ import static springfox.documentation.builders.PathSelectors.regex;
 
 @SpringBootApplication
 @EnableSwagger2 //Enable swagger 2.0 spec
+@EnableDiscoveryClient
 @ComponentScan(basePackageClasses = {
         PetController.class,
         TestController.class
 })
 public class Application {
+    @Bean
+    @LoadBalanced
+    private RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
     }
@@ -55,6 +65,7 @@ public class Application {
                 .securitySchemes(newArrayList(oauth()))
                 .securityContexts(newArrayList(securityContext()));
     }
+
     @Bean
     public Docket testApi() {
         return new Docket(DocumentationType.SWAGGER_2)

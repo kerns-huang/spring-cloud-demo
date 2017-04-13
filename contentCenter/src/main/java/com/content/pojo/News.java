@@ -1,4 +1,4 @@
-package com.message.pojo;
+package com.content.pojo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
