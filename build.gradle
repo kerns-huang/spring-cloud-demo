@@ -1,21 +1,26 @@
 buildscript {
+    ext.kotlin_version = '1.0.7'
     ext {
         springBootVersion = '1.5.2.RELEASE'
         dockerVersion = "1.2"
     }
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        mavenCentral()
 
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
+apply plugin: 'kotlin'
 allprojects()
         {
             apply plugin: 'java'
             apply plugin: 'org.springframework.boot'
             apply plugin: 'idea'
+            ext.kotlinVersion  = "1.1.0"
             dependencyManagement {
                 imports {
                     mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6'
@@ -27,8 +32,10 @@ allprojects()
             dependencies {
                 compile 'org.springframework.cloud:spring-cloud-starter-config'
                 compile 'org.springframework.cloud:spring-cloud-starter-eureka'
-
+                compile "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}" //kotlin反射包
+                compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}"
             }
+
         }
 project("discover")
         {
@@ -46,6 +53,8 @@ project("restapi")
                 compile 'io.springfox:springfox-swagger-ui:2.6.1'
                 compile 'io.springfox:springfox-petstore:2.6.1'
                 compile 'org.springframework.boot:spring-boot-starter-actuator'
+                compile 'org.springframework.cloud:spring-cloud-starter-ribbon'
+
             }
         }
 project("zuul")
@@ -69,6 +78,10 @@ project("server") {
 }
 project("messageCenter") {
     dependencies {
+        compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        compile 'io.springfox:springfox-swagger2:2.6.1'
+        compile 'io.springfox:springfox-swagger-ui:2.6.1'
         compile 'org.springframework.data:spring-data-elasticsearch:2.1.1.RELEASE'
     }
 }
@@ -78,3 +91,12 @@ project("zuul")
                 compile 'org.springframework.cloud:spring-cloud-starter-zuul'
             }
         }
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
