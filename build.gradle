@@ -76,7 +76,7 @@ project("server") {
         compile 'mysql:mysql-connector-java:5.1.21'
     }
 }
-project("messageCenter") {
+project("contentCenter") {
     dependencies {
         compile 'org.springframework.cloud:spring-cloud-starter-eureka'
         compile 'org.springframework.boot:spring-boot-starter-web'
