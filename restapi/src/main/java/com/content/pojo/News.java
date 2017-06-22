@@ -1,17 +1,12 @@
 package com.content.pojo;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
-
 import java.io.Serializable;
 
 /**
- * Created by kerns on 2017/4/12.
- * 新闻类内容
+ * Created by huangchunbo on 2017/5/8.
  */
-@Document(indexName = "news_index", type = "external", shards = 1, replicas = 0, refreshInterval = "-1")
-public class News implements Serializable{
-    @Id
+public class News  implements Serializable {
+
     private Long id;
     private String title;//标题
     private String content;//内容

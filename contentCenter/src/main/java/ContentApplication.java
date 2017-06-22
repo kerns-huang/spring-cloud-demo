@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
@@ -25,6 +26,8 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @ComponentScan(basePackages = {
         "com.content"
 })
+@EnableElasticsearchRepositories(basePackages = {
+        "com.content.repository"})
 public class ContentApplication {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(ContentApplication.class, args);

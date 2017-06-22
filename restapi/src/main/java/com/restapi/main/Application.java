@@ -1,6 +1,8 @@
 package com.restapi.main;
 
+import com.content.dubbo.NewDubboConsumerService;
 import com.google.common.base.Predicate;
+import com.restapi.controller.NewController;
 import com.restapi.controller.TestController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,19 +36,20 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @SpringBootApplication
 @EnableSwagger2 //Enable swagger 2.0 spec
 @EnableDiscoveryClient
-@ComponentScan(basePackageClasses = {
-        PetController.class,
-        TestController.class
+@ComponentScan(basePackages = {
+        "com.restapi",
+        "com.content"
 })
 public class Application {
     @Bean
     @LoadBalanced
-    private RestTemplate restTemplate() {
+    RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
+
     }
 
     /**
@@ -76,6 +79,12 @@ public class Application {
                 .build()
                 .securitySchemes(newArrayList(oauth()))
                 .securityContexts(newArrayList(securityContext()));
+    }
+    @Bean
+    public Docket newApi(){
+        return new Docket(DocumentationType.SWAGGER_2).groupName("new-api")
+                .apiInfo(apiInfo()).select().paths(newPaths()).build();
+
     }
 
     @Bean
@@ -112,6 +121,9 @@ public class Application {
     private Predicate<String> testPaths() {
         return or(regex("/test.*"));
     }
+
+
+    private Predicate<String> newPaths(){return or(regex("/new.*"));}
 
     private Predicate<String> userOnlyEndpoints() {
         return new Predicate<String>() {

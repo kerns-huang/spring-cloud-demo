@@ -10,6 +10,5 @@ import java.util.List;
  * Created by kerns on 2017/4/12.
  */
 @Repository
-public interface NewsRepository extends ElasticsearchRepository<News, String> {
-    List<News> search(String name);
+public interface NewsRepository extends ElasticsearchRepository<News, Long> {
 }

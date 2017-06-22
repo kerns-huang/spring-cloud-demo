@@ -34,15 +34,15 @@ public class NewsController {
     @ApiOperation(value="查找所有新闻信息",notes = "新闻")
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     @ResponseBody
-    public List<News> findAll() {
-        return (List<News>) newsRepository.findAll();
+    public Iterable<News> findAll() {
+        return newsRepository.findAll();
     }
 
     @ApiOperation(value="分页查询新闻信息",notes = "新闻")
     @RequestMapping(value = "/findByPage", method = RequestMethod.GET)
     @ResponseBody
-    public List<News> findByPage(PageRequest request){
-        return (List<News>) newsRepository.findAll(request);
+    public Iterable<News> findByPage(PageRequest request){
+        return  newsRepository.findAll(request);
     }
 
 

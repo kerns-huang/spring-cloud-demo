@@ -4,4 +4,6 @@ include 'restapi'
 include 'server'
 include 'zuul'
 include 'contentCenter'
+include 'crawler'
+include 'netty'
 
