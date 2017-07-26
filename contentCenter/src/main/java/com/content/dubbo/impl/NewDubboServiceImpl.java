@@ -20,4 +20,9 @@ public class NewDubboServiceImpl implements NewDubboService {
         return "success";
     }
 
+    public Iterable<News> findAll()
+    {
+       return newsRepository.findAll();
+    }
+
 }

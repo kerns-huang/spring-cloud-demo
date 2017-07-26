@@ -28,6 +28,12 @@ public class NewController {
     public String addNews(News news){
         return newDubboConsumerService.addNews(news);
     }
+    @ApiOperation(value = "获取新闻列表", notes = "")
+    @RequestMapping(value = "/findAllNews", method = RequestMethod.GET)
+    @ResponseBody
+    public Iterable<News> findAllNews(){
+        return newDubboConsumerService.findAll();
+    }
 
 }
 

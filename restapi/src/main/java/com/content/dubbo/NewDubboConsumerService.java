@@ -27,4 +27,8 @@ public class NewDubboConsumerService
     {
         return newDubboService.addNews(news);
     }
+    public Iterable<News> findAll()
+    {
+        return newDubboService.findAll();
+    }
 }

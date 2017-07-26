@@ -7,4 +7,5 @@ import com.content.pojo.News;
  */
 public interface NewDubboService {
     String addNews(News news);
+    Iterable<News> findAll();
 }

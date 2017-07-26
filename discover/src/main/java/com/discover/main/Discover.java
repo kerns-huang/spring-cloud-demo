@@ -15,6 +15,4 @@ public class Discover {
     public static void main(String[] args) {
         SpringApplication.run(Discover.class, args);
     }
-
-
 }
