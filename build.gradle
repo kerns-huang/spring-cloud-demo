@@ -14,13 +14,13 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
-apply plugin: 'kotlin'
 allprojects()
         {
             apply plugin: 'java'
             apply plugin: 'org.springframework.boot'
             apply plugin: 'idea'
-            ext.kotlinVersion  = "1.1.0"
+            apply plugin: 'kotlin'
+            ext.kotlinVersion = "1.1.0"
             dependencyManagement {
                 imports {
                     mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6'
@@ -55,6 +55,9 @@ project("restapi")
                 compile 'org.springframework.boot:spring-boot-starter-actuator'
                 compile 'org.springframework.cloud:spring-cloud-starter-ribbon'
                 compile 'io.dubbo.springboot:spring-boot-starter-dubbo:1.0.0'
+                //服务监控
+                compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+                compile('org.springframework.cloud:spring-cloud-sleuth-zipkin')
             }
         }
 project("zuul")
@@ -74,34 +77,52 @@ project("server") {
         compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1'
         compile 'org.springframework.boot:spring-boot-starter-jdbc'
         compile 'mysql:mysql-connector-java:5.1.21'
+        compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+        compile('org.springframework.cloud:spring-cloud-sleuth-zipkin')
     }
 }
 project("contentCenter") {
     dependencies {
         compile 'org.springframework.cloud:spring-cloud-starter-eureka'
         compile 'org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE'
+        //页面测试接口的依赖
         compile 'io.springfox:springfox-swagger2:2.6.1'
         compile 'io.springfox:springfox-swagger-ui:2.6.1'
+        //对于搜索elasticsearch的依赖
         compile 'org.springframework.data:spring-data-elasticsearch:2.1.1.RELEASE'
+        //对于dubbo的依赖
         compile 'io.dubbo.springboot:spring-boot-starter-dubbo:1.0.0'
-        
-        
+        //服务监控
+        compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+        compile('org.springframework.cloud:spring-cloud-sleuth-zipkin')
     }
 }
-project("netty"){
-dependencies{
-    compile 'io.netty:netty-all:4.1.0.CR7'
-}
+project("netty") {
+    dependencies {
+        compile 'io.netty:netty-all:4.1.0.CR7'
+    }
 }
 project("zuul")
         {
-            dependencies{
+            dependencies {
                 compile 'org.springframework.cloud:spring-cloud-starter-zuul'
             }
         }
 project("crawler")
         {
-
+            compile('org.jsoup:jsoup:1.10.2')
+            //服务监控
+            compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+            compile('org.springframework.cloud:spring-cloud-sleuth-zipkin')
+        }
+project("zipkinserver")
+        {
+            dependencies {
+                compile('org.springframework.boot:spring-boot-starter')
+                compile('io.zipkin.java:zipkin-server')
+                runtime('io.zipkin.java:zipkin-autoconfigure-ui')
+                testCompile('org.springframework.boot:spring-boot-starter-test')
+            }
         }
 
 repositories {

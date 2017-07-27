@@ -1,2 +1,2 @@
-discover访问：
+##discover访问：
 http://localhost:8888
