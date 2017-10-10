@@ -20,6 +20,7 @@ allprojects()
             apply plugin: 'org.springframework.boot'
             apply plugin: 'idea'
             apply plugin: 'kotlin'
+            apply plugin: 'jacoco'
             ext.kotlinVersion = "1.1.0"
             dependencyManagement {
                 imports {
@@ -108,13 +109,13 @@ project("zuul")
                 compile 'org.springframework.cloud:spring-cloud-starter-zuul'
             }
         }
-project("crawler")
-        {
-            compile('org.jsoup:jsoup:1.10.2')
-            //服务监控
-            compile('org.springframework.cloud:spring-cloud-starter-sleuth')
-            compile('org.springframework.cloud:spring-cloud-sleuth-zipkin')
-        }
+//project("crawler")
+//        {
+//            //compile('org.jsoup:jsoup:1.10.2')
+//            //服务监控
+//            compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+//            compile('org.springframework.cloud:spring-cloud-sleuth-zipkin')
+//        }
 project("zipkinserver")
         {
             dependencies {
@@ -128,3 +129,59 @@ project("zipkinserver")
 repositories {
     mavenCentral()
 }
+//上传jar包到本地nexus的一些配置
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            repository(url: "http://121.43.169.171:8081/nexus/content/repositories/snapshots/") {
+//                authentication(userName: "admin", password: "admin123")
+//            }
+//            /* 发布前禁止更新releases版本
+//            repository(url: "http://60.205.184.158:8081/nexus/content/repositories/releases/") {
+//                authentication(userName: "admin", password: "admin123")
+//            }
+//            */
+//
+//            pom.project {
+//                name project.name
+//                packaging 'jar'
+//                description 'huiguan-commons'
+//                url 'http://www.huiguan.com'
+//
+//                scm {
+//                    url ''
+//                    connection ''
+//                    developerConnection ''
+//                }
+//
+//                licenses {
+//                    license {
+//                        name 'No License'
+//                        url 'http://www.huiguan.com'
+//                        distribution 'repo'
+//                    }
+//                }
+//
+//                developers {
+//                    developer {
+//                        id 'juyongcheng'
+//                        name 'Yongcheng Ju'
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+
+//静态代码检查，需要搭建自己的服务器
+//apply plugin: 'org.sonarqube'
+//sonarqube {
+//    properties {
+//        property "sonar.projectName", "order-service"
+//        property "sonar.projectKey", "com.huiguan:order-service"
+//        property "sonar.host.url", "http://121.43.169.171:9000/"
+//        property "sonar.login", "admin"
+//        property "sonar.password", "admin"
+//        property "sonar.sourceEncoding", "utf-8"
+//    }
+//}

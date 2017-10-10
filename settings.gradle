@@ -1,9 +1,9 @@
-rootProject.name = 'spring-cloud-test'
+rootProject.name = 'spring-cloud-demo'
 include 'discover'
 include 'restapi'
 include 'server'
 include 'zuul'
+include 'zipkinserver'
 include 'contentCenter'
-include 'crawler'
 include 'netty'
 
