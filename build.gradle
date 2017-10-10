@@ -34,6 +34,7 @@ allprojects()
                 compile 'org.springframework.cloud:spring-cloud-starter-eureka'
                 compile "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}" //kotlin反射包
                 compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}"
+                compile "org.projectlombok:lombok:1.16.16"
             }
 
         }
@@ -108,23 +109,6 @@ project("zuul")
                 compile 'org.springframework.cloud:spring-cloud-starter-zuul'
             }
         }
-project("crawler")
-        {
-            compile('org.jsoup:jsoup:1.10.2')
-            //服务监控
-            compile('org.springframework.cloud:spring-cloud-starter-sleuth')
-            compile('org.springframework.cloud:spring-cloud-sleuth-zipkin')
-        }
-project("zipkinserver")
-        {
-            dependencies {
-                compile('org.springframework.boot:spring-boot-starter')
-                compile('io.zipkin.java:zipkin-server')
-                runtime('io.zipkin.java:zipkin-autoconfigure-ui')
-                testCompile('org.springframework.boot:spring-boot-starter-test')
-            }
-        }
-
 repositories {
     mavenCentral()
 }
