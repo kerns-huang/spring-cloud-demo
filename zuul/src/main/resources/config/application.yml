@@ -21,7 +21,8 @@ zuul:
 ribbon:
       #如果设置为1那么就是1+1=2.如果设置3那么就是3次
       MaxAutoRetries: 1
-      #MaxAutoRetriesNextServer: 1
+      #重试下一个server，如果有ribbon和eureka，交互起来会不会出各种问题 ？
+      MaxAutoRetriesNextServer: 1
 spring:
   application:
     name: zuul-server

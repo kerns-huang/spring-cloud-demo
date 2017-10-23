@@ -6,6 +6,8 @@ import com.content.dubbo.NewDubboService;
 import com.content.pojo.News;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,7 @@ public class NewController {
     @ApiOperation(value = "获取新闻列表", notes = "")
     @RequestMapping(value = "/findAllNews", method = RequestMethod.GET)
     @ResponseBody
+    @ApiResponses(@ApiResponse(code = 200, message ="消息" ,response=Iterable.class))
     public Iterable<News> findAllNews(){
         return newDubboConsumerService.findAll();
     }
