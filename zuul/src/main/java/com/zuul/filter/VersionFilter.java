@@ -1,23 +1,22 @@
-/*
- * huiguan.com Inc.
- * Copyright (c) 2017 All Rights Reserved.
- */
-package com.zuul.main;
+package com.zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
-import org.springframework.stereotype.Component;
 
 /**
+ * 接口的版本号控制
  *
  * @author huangchunbo
- * @since $$Revision:1.0.0, $$Date: 2017/10/9 17:06 $$
+ * @version 1.0
+ * @since 2017/11/28
  */
-@Component
-public class PreFilter extends ZuulFilter {
+public class VersionFilter extends ZuulFilter {
     /**
-     * 过滤器的类型
+     *过滤的类型
      *
-     * @return
+     *@author huangchunbo
+     *@since 2017/11/28
+     *
+     *@return
      */
     @Override
     public String filterType() {
@@ -25,9 +24,12 @@ public class PreFilter extends ZuulFilter {
     }
 
     /**
-     * 过滤的顺序
+     *过滤的顺序
      *
-     * @return
+     *@author huangchunbo
+     *@since 2017/11/28
+     *
+     *@return
      */
     @Override
     public int filterOrder() {
@@ -35,8 +37,7 @@ public class PreFilter extends ZuulFilter {
     }
 
     /**
-     * 是否可以被执行
-     *
+     * 是否需要过滤
      * @return
      */
     @Override
@@ -44,11 +45,6 @@ public class PreFilter extends ZuulFilter {
         return false;
     }
 
-    /**
-     * 过滤链执行
-     *
-     * @return
-     */
     @Override
     public Object run() {
         return null;

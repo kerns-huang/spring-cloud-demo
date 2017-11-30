@@ -1,9 +1,6 @@
 package com.restapi.main;
 
-import com.content.dubbo.NewDubboConsumerService;
 import com.google.common.base.Predicate;
-import com.restapi.controller.NewController;
-import com.restapi.controller.TestController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -23,7 +20,6 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.ApiKeyVehicle;
 import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import springfox.petstore.controller.PetController;
 
 import java.util.ArrayList;
 import java.util.List;
