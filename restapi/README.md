@@ -3,7 +3,7 @@
 接口测试访问路径
 http://127.0.0.1:8080/restapi/swagger-ui.html
 
-依赖
+依赖 : discover 模块和 contentCenter模块的启动
 
 ## zookeeper 客户端
 

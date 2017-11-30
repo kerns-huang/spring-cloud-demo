@@ -6,4 +6,5 @@ include 'zuul'
 include 'zipkinserver'
 include 'contentCenter'
 include 'netty'
+include 'config'
 
